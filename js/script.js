@@ -9,6 +9,9 @@ mafsForm.submit(function(e){
     if(mafsForm.find("#search").val().length !== 0) {
         var search = mafsForm.find("#search").val();
     }
+    if(mafsForm.find("#search_2").val().length !== 0) {
+        var search_2 = mafsForm.find("#search_2").val();
+    }
     if(mafsForm.find("#year").val().length !== 0) {
         var year = mafsForm.find("#year").val();
     }
@@ -19,6 +22,7 @@ mafsForm.submit(function(e){
     var data = {
         action : "my_ajax_filter_search",
         search : search,
+        search_2 : search_2,
         status : status,
         year : year, 
     }

@@ -7,11 +7,16 @@ function my_ajax_filter_search_shortcode() {
  
     <div id="my-ajax-filter-search">
         <form action="" method="get">
-            <div class="grid grid-3">
+            <div class="grid grid-4">
 
                 <div class="grid-item">
                     <label for="search">Search by name</label>
                     <input type="text" name="search" id="search" value="" placeholder="Search Here..">
+                </div>
+
+                <div class="grid-item">
+                    <label for="search_2">Search by Insitute or Field</label>
+                    <input type="text" name="search_2" id="search_2" value="" placeholder="Home / Host / Field">
                 </div>
 
                 <div class="grid-item">

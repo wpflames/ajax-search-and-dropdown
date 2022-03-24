@@ -38,28 +38,45 @@ function my_ajax_filter_search_callback() {
         'tax_query' => $tax_query
     );
  
+    // SEARCH BY NAME
     if(isset($_GET['search'])) {
         $search = sanitize_text_field( $_GET['search'] );
         $search_query = new WP_Query( array(
             'post_type' => 'grantee',
             'posts_per_page' => -1,
-            'meta_query' => array(
-                'relation' => 'OR',
-                array(
-                    'key' => get_field('home_institution'),
-                    'value' => $search,
-                    'compare' => 'LIKE'
-                ),
-                  array(
-                    'key' => get_field('host_institution'),
-                    'value' => $search,
-                    'compare' => 'LIKE'
-                  )
-                ),
             'tax_query' => $tax_query,
-            's' => $search
+            's' => $search,
         ) );
-    } else {
+    }
+    
+    // SEARCH / META QUERY
+    if(isset($_GET['search_2'])) {
+        $search_2 = sanitize_text_field( $_GET['search_2'] );
+        $search_query = new WP_Query( array(
+            'post_type' => 'grantee',
+            'posts_per_page' => -1,
+            'meta_query'	=> array(
+                'relation'		=> 'OR',
+                array(
+                    'key'		=> 'home_institution',
+                    'value'		=> $search_2,
+                    'compare'	=> 'LIKE'
+                ),
+                array(
+                    'key'		=> 'host_institution',
+                    'value'		=> $search_2,
+                    'compare'	=> 'LIKE'
+                ), 
+                array(
+                    'key'		=> 'field',
+                    'value'		=> $search_2,
+                    'compare'	=> 'LIKE'
+                )
+            ),
+        ) );
+    } 
+
+    else {
         $search_query = new WP_Query( $args );
     }
  
@@ -88,7 +105,7 @@ function my_ajax_filter_search_callback() {
         echo json_encode($result);
  
     } else {
-        // no posts found
+        echo 'No posts found';
     }
     wp_die();
 }
