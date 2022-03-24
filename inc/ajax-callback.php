@@ -47,7 +47,7 @@ function my_ajax_filter_search_callback() {
             'tax_query' => $tax_query,
             's' => $search,
         ) );
-    }
+    }`
     
     // SEARCH / META QUERY
     if(isset($_GET['search_2'])) {
